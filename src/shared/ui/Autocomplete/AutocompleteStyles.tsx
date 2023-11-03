@@ -24,8 +24,6 @@ export const useAutocompleteStyles = makeStyles()((theme) => ({
       'color': COLORS.black,
       'fontSize': theme.typography.pxToRem(14),
       'lineHeight': '157%',
-
-
       '&:-webkit-autofill': {
         background: COLORS.gray300,
         WebkitBoxShadow: `0 0 0 1000px ${COLORS.gray300} inset !important`,
@@ -47,22 +45,6 @@ export const useAutocompleteStyles = makeStyles()((theme) => ({
         backgroundColor: 'unset',
       },
     },
-    '& .MuiAutocomplete-endAdornment': {
-      top: 'calc(50% - 12px)',
-    },
-    '& .MuiAutocomplete-clearIndicator': {
-      '& svg': {
-        width: 12,
-        height: 12,
-      },
-    },
-    '& .MuiAutocomplete-popupIndicator': {
-      padding: theme.spacing(1),
-
-      [theme.breakpoints.down('md')]: {
-        marginRight: 0,
-      },
-    },
     input:{
       cursor: 'pointer',
       userSelect: 'none',
@@ -81,7 +63,7 @@ export const useAutocompleteStyles = makeStyles()((theme) => ({
         borderTop: `1px solid ${COLORS.gray300}`,
     },
     '& .MuiAutocomplete-option':{
-      padding: theme.spacing(1.5, 2),
+      padding: theme.spacing(1.6, 2, 1.5, 2),
       '&.Mui-focused':{
         backgroundColor: COLORS.gray400
       }

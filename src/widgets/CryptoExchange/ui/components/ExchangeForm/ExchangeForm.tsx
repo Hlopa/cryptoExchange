@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { Autocomplete, Grid, IconButton } from "@mui/material";
 import TextField from "shared/ui/TextField/TextField";
 import CryptoTextField from "features/CryptoTextField/CryptoTextField";
 import Button from "shared/ui/Button/Button";
+import Swap from "shared/icons/Swap";
+
 
 export const OPTIONS = [
   {
@@ -39,7 +41,7 @@ const ExchangeForm = () => {
   return (
     <Grid container spacing={4} alignItems="flex-end">
       <Grid item xs={12}>
-        <Grid container spacing={3.5} alignItems="center">
+        <Grid container spacing={3} alignItems="center">
           <Grid item xs>
             <CryptoTextField
               options={OPTIONS}
@@ -49,8 +51,10 @@ const ExchangeForm = () => {
               setTextFieldValue={setTextFieldValue}
             />
           </Grid>
-          <Grid item xs={2}>
-            IconButton
+          <Grid item >
+           <IconButton>
+              <Swap/>
+           </IconButton>
           </Grid>
           <Grid item xs>
             <CryptoTextField

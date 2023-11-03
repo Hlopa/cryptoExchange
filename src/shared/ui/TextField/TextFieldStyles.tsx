@@ -35,31 +35,9 @@ export const useTextFieldStyles = makeStyles<{ withoutBorder: boolean }>()((them
       color: COLORS.gray500,
     },
   },
-  error: {
-    // 'fieldset': {
-    //   borderColor: `${COLORS.red} !important`,
-    // },
-    // '&:hover fieldset': {
-    //   borderColor: `${COLORS.red} !important`,
-    // },
-  },
-  disabled: {
-    // 'fieldset': {
-    //   borderColor: `${COLORS.gray200} !important`,
-    // },
-    // '&:hover fieldset': {
-    //   borderColor: `${COLORS.gray200} !important`,
-    // },
-    // 'input': {
-    //   color: COLORS.gray200,
-    // },
-  },
   label: {
     lineHeight: '133%',
-    marginBottom: theme.spacing(0.5)
-  },
-  adornedEnd: {
-    // backgroundColor: COLORS.gray100,
+    marginBottom: theme.spacing(0.6)
   },
   formControl: {
     border: 'none',

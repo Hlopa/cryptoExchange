@@ -19,7 +19,6 @@ export const CryptoExchange = () => {
             </Grid> 
         </Grid>
       </Box>
-     
     </Box>
     
   )

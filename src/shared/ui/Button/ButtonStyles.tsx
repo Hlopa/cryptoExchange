@@ -1,7 +1,7 @@
 import { COLORS } from 'app/styles/colors';
 import { makeStyles } from 'tss-react/mui';
 
-export const useButtonStyles = makeStyles()(() => ({
+export const useButtonStyles = makeStyles()((theme) => ({
   root: {
     borderRadius: 5,
     padding: '16px 24px 14px',
@@ -13,6 +13,7 @@ export const useButtonStyles = makeStyles()(() => ({
     transition: 'all 0.3s',
     boxShadow: 'none',
     color: '#fff',
+    fontSize: theme.typography.pxToRem(16),
     backgroundColor: COLORS.primary,
     '&:hover, &:focus, &:active': {
       boxShadow: 'none',

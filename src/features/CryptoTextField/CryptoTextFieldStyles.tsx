@@ -18,7 +18,7 @@ export const useCryptoTextFieldStyles = makeStyles()((theme) => ({
     '& .MuiButtonBase-root':{
       position: 'relative',
       backgroundColor: COLORS.gray300,
-      paddingRight: theme.spacing(2),
+      paddingRight: theme.spacing(1),
       paddingLeft: theme.spacing(4),
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
@@ -44,6 +44,7 @@ export const useCryptoTextFieldStyles = makeStyles()((theme) => ({
     }
   },
   btnText:{
-    marginLeft: theme.spacing(1.5)
+    marginLeft: theme.spacing(1.5),
+    paddingRight: theme.spacing(2.7)
   }
 }));

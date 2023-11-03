@@ -17,7 +17,6 @@ const CryptoTextField = ({ options, selectOption, setSelectOption, textFieldValu
       icon: v.icon
     });
 
-    console.log(e, v)
     setIsOpenAutocomplete(false)
   };
 
@@ -29,6 +28,7 @@ const CryptoTextField = ({ options, selectOption, setSelectOption, textFieldValu
     return (
       <Autocomplete
         options={options}
+        selectOption={selectOption}
         isOpen={isOpenAutocomplete}
         setIsOpen={setIsOpenAutocomplete}
         onChange={handleAutocomplete}

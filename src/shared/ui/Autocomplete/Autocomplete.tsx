@@ -1,15 +1,19 @@
 import { Autocomplete as DefaultAutocomplete, FormControl, TextField, Typography, Box, ClickAwayListener } from '@mui/material';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 import { useAutocompleteStyles } from './AutocompleteStyles';
 import ArrowDown from '../../icons/ArrowDown';
 import { COLORS } from 'app/styles/colors';
+import Close from 'shared/icons/Close';
 
 
 
 const Autocomplete = (props) => {
-  const { options, label, error, placeholder, helperText, onChange, isOpen, setIsOpen, ...other } = props;
+  const { options, label, error, placeholder, helperText, onChange, isOpen, setIsOpen, selectOption,...other } = props;
   const { classes } = useAutocompleteStyles();
+
+  const [rerender, setRerender] = useState(false);
+  const refInput = useRef(null)
 
   const handleChange = (e, v) => {
     // @ts-ignore
@@ -20,11 +24,15 @@ const Autocomplete = (props) => {
     setIsOpen(false)
   }
 
+  const handleClearSearch = () => {
+    setRerender(!rerender)
+  }
+
   const createOptionLabel = (label) => {
     const ticker = label.split(' ')[0];
     const fullName = label.split(' ').slice(1).join(' ');
     return <Box display={'flex'}>
-      <Typography width={'50px'}>{ticker}</Typography>
+      <Typography width={'48px'}>{ticker}</Typography>
       <Typography flexGrow={1} component={'span'} color={COLORS.gray800}>{fullName}</Typography>
     </Box>
   }
@@ -37,15 +45,19 @@ const Autocomplete = (props) => {
     >
       <FormControl fullWidth className={classes.formControl}>
         <DefaultAutocomplete
+          key={rerender}
           disablePortal
           onChange={handleChange}
           options={options}
-          popupIcon={<ArrowDown />}
+          popupIcon={<Box onClick={handleClearSearch}><Close /></Box> }
+          clearIcon={null}
           disableClearable
-          open={isOpen}
+          // open={isOpen}
+          open={true}
           renderInput={(params) => (
             <TextField
               {...params}
+              ref={refInput}
               placeholder={placeholder}
               id="search"
               helperText={helperText}
