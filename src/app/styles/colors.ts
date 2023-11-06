@@ -11,4 +11,5 @@ export const COLORS = {
   gray600: '#C1D9E5',
   gray800: '#80A2B6',
 
+  error: '#E03F3F',
 };

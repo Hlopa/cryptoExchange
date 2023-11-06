@@ -2,9 +2,10 @@ import {Box,  Grid } from "@mui/material";
 import { useStyles } from "./styles";
 import Header from "./components/Header/Header";
 import ExchangeForm from "./components/ExchangeForm/ExchangeForm";
+import { memo } from "react";
 
 
-export const CryptoExchange = () => {
+export const CryptoExchange = memo(() => {
   const { classes } = useStyles();
 
   return (
@@ -22,4 +23,4 @@ export const CryptoExchange = () => {
     </Box>
     
   )
-}
+})

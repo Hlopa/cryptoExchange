@@ -1,8 +1,9 @@
 import {Stack, Typography} from '@mui/material';
 import { useStyles } from './styles';
+import { memo } from 'react';
 
 
-const Header = () => {
+const Header = memo(() => {
   const { classes } = useStyles();
   return (
     <Stack spacing={2}>
@@ -14,6 +15,6 @@ const Header = () => {
       </Typography>
     </Stack>
   )
-}
+})
 
 export default Header

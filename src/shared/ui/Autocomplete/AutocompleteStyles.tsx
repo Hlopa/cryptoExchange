@@ -67,6 +67,9 @@ export const useAutocompleteStyles = makeStyles()((theme) => ({
       '&.Mui-focused':{
         backgroundColor: COLORS.gray400
       }
+    },
+    '& .MuiAutocomplete-listbox .MuiAutocomplete-option.Mui-focused':{
+      backgroundColor: COLORS.gray400
     }
   },
 

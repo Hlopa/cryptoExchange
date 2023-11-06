@@ -1,41 +1,48 @@
 import { Autocomplete as DefaultAutocomplete, FormControl, TextField, Typography, Box, ClickAwayListener } from '@mui/material';
-import React, { useRef, useState } from 'react';
-
+import {AutocompleteProps as MuiAutocompleteProps} from '@mui/material/Autocomplete';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { useAutocompleteStyles } from './AutocompleteStyles';
-import ArrowDown from '../../icons/ArrowDown';
 import { COLORS } from 'app/styles/colors';
 import Close from 'shared/icons/Close';
+import { CryptoOptionType } from 'types/Crypto';
 
+export type AutocompleteProps = Omit<MuiAutocompleteProps<any, any, any, any>, 'renderInput'> & {
+  options: CryptoOptionType[];
+  selectOption: CryptoOptionType;
+  isOpen: boolean;
+  setIsOpen: (boolean) => void;
+  onChange: (e: any, v: any) => void;
+  placeholder: string;
+};
 
-
-const Autocomplete = (props) => {
-  const { options, label, error, placeholder, helperText, onChange, isOpen, setIsOpen, selectOption,...other } = props;
+const Autocomplete: FC<AutocompleteProps> = memo((props) => {
+  const { options, selectOption, setIsOpen,  isOpen, onChange, placeholder, ...other } = props;
   const { classes } = useAutocompleteStyles();
 
-  const [rerender, setRerender] = useState(false);
-  const refInput = useRef(null)
+  const [rerender, setRerender] = useState<number>(1);
 
-  const handleChange = (e, v) => {
-    // @ts-ignore
-    onChange(e, v);
-  };
+  const handleChange = useCallback((_, option: CryptoOptionType) => {
+    onChange(_, option);
+  }, [onChange]);
 
-  const handleClickAway = () => {
+  const handleClickAway = useCallback(() => {
     setIsOpen(false)
-  }
+  }, [setIsOpen])
+
 
   const handleClearSearch = () => {
-    setRerender(!rerender)
+    setRerender(rerender+1)
   }
 
-  const createOptionLabel = (label) => {
-    const ticker = label.split(' ')[0];
+  const createOptionLabel = useCallback((label: string) => {
+    const ticker = label.split(' ')[0].toUpperCase();
     const fullName = label.split(' ').slice(1).join(' ');
-    return <Box display={'flex'}>
-      <Typography width={'48px'}>{ticker}</Typography>
+    return <Box display={'flex'} alignItems={'center'} gap={1}>
+      <Typography minWidth={'100px'}>{ticker}</Typography>
       <Typography flexGrow={1} component={'span'} color={COLORS.gray800}>{fullName}</Typography>
     </Box>
-  }
+  }, [])
+
 
   return (
     <ClickAwayListener
@@ -49,22 +56,17 @@ const Autocomplete = (props) => {
           disablePortal
           onChange={handleChange}
           options={options}
-          popupIcon={<Box onClick={handleClearSearch}><Close /></Box> }
+          popupIcon={<Box onClick={handleClearSearch}><Close /></Box>}
           clearIcon={null}
           disableClearable
-          // open={isOpen}
-          open={true}
+          open={isOpen}
           renderInput={(params) => (
             <TextField
               {...params}
-              ref={refInput}
               placeholder={placeholder}
-              id="search"
-              helperText={helperText}
-              error={error}
             />
           )}
-          renderOption={(props, option: any) => (
+          renderOption={(props, option: CryptoOptionType) => (
             <Box component="li" sx={{ '& > img': { mr: 1.5, flexShrink: 0 } }} {...props}>
               <img
                 width="20"
@@ -72,13 +74,13 @@ const Autocomplete = (props) => {
                 alt=""
               />
               {createOptionLabel(option.label)}
-            </Box>
+             </Box>
           )}
           {...other}
         />
       </FormControl>
     </ClickAwayListener>
   );
-};
+});
 
 export default Autocomplete;

@@ -2,6 +2,9 @@ import { COLORS } from 'app/styles/colors';
 import { makeStyles } from 'tss-react/mui';
 
 export const useButtonStyles = makeStyles()((theme) => ({
+  buttonBox:{
+    position: 'relative'
+  },
   root: {
     borderRadius: 5,
     padding: '16px 24px 14px',

@@ -5,6 +5,7 @@ export const useTextFieldStyles = makeStyles<{ withoutBorder: boolean }>()((them
   root:{
     borderRadius: withoutBorder ? 0 :  5,
     paddingRight: 0, 
+    backgroundColor: COLORS.gray300,
     border: withoutBorder ? 'none' : `1px solid ${COLORS.gray500}`,
     '&:hover fieldset': {
       border: withoutBorder ? 'none' : `1px solid ${COLORS.gray600} !important`,
@@ -22,8 +23,6 @@ export const useTextFieldStyles = makeStyles<{ withoutBorder: boolean }>()((them
   input: {
     transition: 'all 0.3s',
     color: COLORS.black,
-    background: COLORS.gray300,
-    backgroundColor: `${COLORS.gray300} !important`,
     borderRadius: withoutBorder ? 0 : 5,
     lineHeight: '143.75%',
     padding: '14px 16px 13px',
@@ -43,7 +42,10 @@ export const useTextFieldStyles = makeStyles<{ withoutBorder: boolean }>()((them
     border: 'none',
     '& .MuiFormHelperText-root': {
       marginLeft: theme.spacing(1),
-      marginTop: 0,
+      marginTop: theme.spacing(0.3),
+      color: COLORS.error,
+      whiteSpace: 'nowrap'
     },
+    position: 'relative'
   },
 }));
